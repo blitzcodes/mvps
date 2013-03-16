@@ -18,4 +18,4 @@ define("LIB_ROOT", dirname(__FILE__) . DIRECTORY_SEPARATOR);
 }
 
 // Fire it up ~ Goodness, gracious, great balls of fire!
-$router = new \BlitzMvp\Core\Presenter\Presenter(new Twig_Environment(new Twig_Loader_Filesystem(BLITZMVP_ROOT . 'Views')));
+$router = new \BlitzMvp\Core\Presenter\Presenter(new Twig_Environment(new Twig_Loader_Filesystem(BLITZMVP_ROOT)));

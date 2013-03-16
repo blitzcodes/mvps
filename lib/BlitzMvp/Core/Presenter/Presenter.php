@@ -10,6 +10,7 @@ class Presenter {
 	/** @var $uri \BlitzMvp\Core\Presenter\Presenter */
 	public $presenter = NULL;
 	public $output = array();
+	public $template = 'Main/default';
 
 	public function __construct(\Twig_Environment $viewer) {
 		// Register the autoload controls, stackable and does not interfere with Twig's
@@ -17,7 +18,7 @@ class Presenter {
 		$this->view = $viewer;
 
 		$this->router = new \BlitzMvp\Core\Router\Router();
-		$this->renderPresenter();
+		$this->loadPresenter();
 	}
 
 	private function  _registerAutoload() {
@@ -45,7 +46,7 @@ class Presenter {
 		});
 	}
 
-	public function renderPresenter($route = '', $dir = '') {
+	public function loadPresenter($route = '', $dir = '') {
 		$presenterPath = $this->router->presenterPath($route, $dir);
 
 		// Include default globals for easy of access in presenters
@@ -60,19 +61,30 @@ class Presenter {
 		return $output;
 	}
 
-	public function __destruct() {
-		$this->renderPage();
+	public function renderPresenter($route = '', $dir = '', $template = '', $base = '') {
+		$output = $this->loadPresenter($route, $dir);
+
+		if($template)
+			return $this->renderTemplate($template, $base);
 	}
 
-	public function renderPage() {
+	// When do we want to render the final page? Once we know for sure we're all done here... Lights, Stage, Action!
+
+	public function __destruct() {
+		$this->_displayPage();
+	}
+
+	private function _displayTemplate() {
 		//		dieToString($this->output);
 		// The final culmination of the resulting output, stored in the last possible array slot, is our page to display
-		$output = array_pop($this->output);
+		print $this->renderTemplate(array_pop($this->output), true);
+	}
 
-		$base = $this->view->loadTemplate('base.twig');
-		$this->view->display('Main/default.twig', array(
-			'layout' => $base,
-			'output' => $output
-		));
+	private function  renderTemplate($template, $base = '') {
+		$data = array('output' => $output);
+		if($includeBase)
+			$data['base'] = $this->view->loadTemplate(BLITZMVP_VIEWS . "$base.twig");
+
+		return $this->view->display(BLITZMVP_VIEWS . $this->$template . '.twig', $data);
 	}
 }

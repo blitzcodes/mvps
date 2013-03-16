@@ -3,7 +3,7 @@
 /** @var $presenter BlitzMvp\Core\Presenter\Presenter */
 /** @var $view Twig_Environment */
 
-$output .= $presenter->renderPresenter('account', 'home');
+$output .= $presenter->loadPresenter('account', 'home');
 
 $u = new \BlitzMvp\Models\User();
 if($u->checkLogin(array()))
