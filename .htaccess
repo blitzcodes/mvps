@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+#	RewriteBase /github/blitzmvp/
+
+	RewriteCond %{REQUEST_FILENAME} ^.*ajax.*$
+	RewriteRule ^.*$  - [QSA,NC,L]
+
+	RewriteCond %{REQUEST_FILENAME} ^.*pdf.*$
+	RewriteRule ^.*$  - [QSA,NC,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ /github/blitzmvp/index.php?/$1 [NC,L,QSA]
+</IfModule>
+
+## END WordPress
+#<FilesMatch "\.(jpg|jpeg|png|gif|css)$">
+#	Header set Expires "Thu, 15 Apr 3015 20:00:00 GMT"
+#</FilesMatch>

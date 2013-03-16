@@ -2,18 +2,14 @@
 
 namespace BlitzMvp\Core\Data;
 
-require_once(dirname(__FILE__).'/Crudable.php');
+trait RESTful {
+	use \BlitzMvp\Core\Data\lib\Crudable;
 
-if(!trait_exists('RESTful')) {
-	trait RESTful {
-		use \BlitzMvp\Core\Data\lib\Crudable;
+	public function  get() { }
 
-		public function  get() { }
+	public function  post() { }
 
-		public function  post() { }
+	public function  json() { }
 
-		public function  json() { }
-
-		public function  html() { }
-	}
+	public function  html() { }
 }

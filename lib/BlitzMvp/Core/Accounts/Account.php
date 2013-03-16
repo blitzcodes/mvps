@@ -2,27 +2,22 @@
 
 namespace BlitzMvp\Core\Accounts;
 
-require_once(dirname(__FILE__) . '/Authentication.php');
+trait Account {
+	use \BlitzMvp\Core\Accounts\lib\Authentication;
 
-if(!trait_exists('Account')) {
+	private $_guid;
 
-	trait Account {
-		use \BlitzMvp\Core\Accounts\lib\Authentication;
+	public function checkLogin($params) {
+		if($this->login($params))
+			$this->setGuid(1);
 
-		private $_guid;
-
-		public function checkLogin($params) {
-			if($this->login($params))
-				$this->setGuid(1);
-
-			return $this->_guid;
-		}
-
-		public function setGuid($newGuid) {
-			$this->_guid = $newGuid;
-			return $this->_guid;
-		}
-
-		protected function getGuid() { return $this->_guid; }
+		return $this->_guid;
 	}
+
+	public function setGuid($newGuid) {
+		$this->_guid = $newGuid;
+		return $this->_guid;
+	}
+
+	protected function getGuid() { return $this->_guid; }
 }

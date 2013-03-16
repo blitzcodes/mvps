@@ -2,15 +2,11 @@
 
 namespace BlitzMvp\Models;
 
-require_once(dirname(__FILE__) . '/../Core/Accounts/Account.php');
+class User extends \BlitzMvp\Core\Model\Model {
+	use \BlitzMvp\Core\Accounts\Account;
 
-if(!class_exists('BlitzMvp\Models\User')) {
-	class User {
-		use \BlitzMvp\Core\Accounts\Account, \BlitzMvp\Core\Data\RESTful;
-
-		public function __construct() {
-		}
-
-		public function guid() { return "This is my GUID: {$this->getGuid()}"; }
+	public function __construct() {
 	}
+
+	public function guid() { return "This is my GUID: {$this->getGuid()}"; }
 }
