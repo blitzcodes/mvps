@@ -13,9 +13,9 @@ define("LIB_ROOT", dirname(__FILE__) . DIRECTORY_SEPARATOR);
 
 // Inclusion of the mvp presenter and paths
 {
-	define("BLITZMVP_ROOT", LIB_ROOT . 'BlitzMvp/');
-	require_once(BLITZMVP_ROOT.'inc.php');
+	define("BMVP_ROOT", LIB_ROOT . 'BlitzMvp/');
+	require_once(BMVP_ROOT.'inc.php');
 }
 
-// Fire it up ~ Goodness, gracious, great balls of fire!
-$router = new \BlitzMvp\Core\Presenter\Presenter(new Twig_Environment(new Twig_Loader_Filesystem(BLITZMVP_ROOT)));
+// Light it up ~ Goodness, gracious, great balls of fire!
+$router = new \BlitzMvp\Core\Presenter\Stage(new Twig_Environment(new Twig_Loader_Filesystem(BMVP_ROOT)));

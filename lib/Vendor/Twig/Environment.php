@@ -308,7 +308,11 @@ class Twig_Environment
      *
      * @return Twig_TemplateInterface A template instance representing the given template name
      */
-    public function loadTemplate($name, $index = null)
+	public function loadView($name, $index = null) {
+		return $this->loadTemplate($name,$index);
+	}
+
+    protected function loadTemplate($name, $index = null)
     {
         $cls = $this->getTemplateClass($name, $index);
 

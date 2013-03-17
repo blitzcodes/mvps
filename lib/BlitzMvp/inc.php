@@ -1,9 +1,9 @@
 <?php
 
-define("BLITZMVP_CORE", BLITZMVP_ROOT . 'Core/');
-define("BLITZMVP_HELPERS", BLITZMVP_CORE . 'Helpers/');
-define("BLITZMVP_PRES", BLITZMVP_ROOT . 'Presenters/');
-define("BLITZMVP_VIEWS", 'Views/');
+define("BMVP_CORE", BMVP_ROOT . 'Core/');
+define("BMVP_HELPERS", BMVP_CORE . 'Helpers/');
+define("BMVP_PRESENTERS", BMVP_ROOT . 'Presenters/');
+define("BMVP_VIEWS", 'Views/');
 
-require_once(BLITZMVP_HELPERS . 'inc.php');
-require_once(BLITZMVP_CORE . 'Presenter/Presenter.php');
+require_once(BMVP_HELPERS . 'inc.php');
+require_once(BMVP_CORE . 'Presenter/Stage.php');

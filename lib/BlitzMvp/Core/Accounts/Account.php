@@ -16,6 +16,7 @@ trait Account {
 
 	public function setGuid($newGuid) {
 		$this->_guid = $newGuid;
+
 		return $this->_guid;
 	}
 

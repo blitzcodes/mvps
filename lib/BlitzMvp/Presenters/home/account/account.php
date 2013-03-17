@@ -1,3 +1,3 @@
 <?php
 
-$output = "Got more to say? Log in here!";
+$output .= "Got more to say? Log in here!";

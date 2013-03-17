@@ -1,7 +1,6 @@
 <?php
 
-/** @var $presenter BlitzMvp\Core\Presenter\Presenter */
-/** @var $view Twig_Environment */
+/** @var $stage \BlitzMvp\Core\Presenter\Stage */
 
 $output .= "<h1>Admin Panel!</h1>";
 
@@ -14,5 +13,3 @@ $output .= "<br/>" . $u->guid();
 $u->setGuid(2);
 
 $output .= "<br/>" . $u->guid();
-
-$output .= "<hr/>Current Route: " . $presenter->router->toString();
