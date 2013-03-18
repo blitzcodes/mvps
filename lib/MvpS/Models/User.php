@@ -1,9 +1,9 @@
 <?php
 
-namespace BlitzMvp\Models;
+namespace MvpS\Models;
 
-class User extends \BlitzMvp\Core\Model\Model {
-	use \BlitzMvp\Core\Accounts\Account;
+class User extends \MvpS\Core\Model\Model {
+	use \MvpS\Core\Accounts\Account;
 
 	public function __construct() {
 	}

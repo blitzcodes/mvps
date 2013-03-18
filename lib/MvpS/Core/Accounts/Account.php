@@ -1,9 +1,9 @@
 <?php
 
-namespace BlitzMvp\Core\Accounts;
+namespace MvpS\Core\Accounts;
 
 trait Account {
-	use \BlitzMvp\Core\Accounts\lib\Authentication;
+	use \MvpS\Core\Accounts\lib\Authentication;
 
 	private $_guid;
 

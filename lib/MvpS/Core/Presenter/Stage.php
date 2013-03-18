@@ -1,15 +1,15 @@
 <?php
 
-namespace BlitzMvp\Core\Presenter;
+namespace MvpS\Core\Presenter;
 
 class Stage {
-	/** @var \BlitzMvp\Core\Presenter\Stage|null */
+	/** @var \MvpS\Core\Presenter\Stage|null */
 	public static $inst = null;
-	/** @var $router \BlitzMvp\Core\Router\Router|null */
+	/** @var $router \MvpS\Core\Router\Router|null */
 	public $router = null;
 	/** @var $view \Twig_Environment|null */
 	public $view = null;
-	/** @var $uri \BlitzMvp\Core\Presenter\Stage|null */
+	/** @var $uri \MvpS\Core\Presenter\Stage|null */
 	public $presenter = null;
 	/** @var array */
 	public $renderedViews = array();
@@ -22,7 +22,7 @@ class Stage {
 
 		// Register the autoload controls, stackable and does not interfere with Twig's
 		$this->_registerAutoload();
-		$this->router = new \BlitzMvp\Core\Router\Router();
+		$this->router = new \MvpS\Core\Router\Router();
 
 		$this->view = $viewer;
 		$this->renderPresenter();
@@ -78,7 +78,7 @@ class Stage {
 	 * The final culmination of the resulting output, stored in the last possible array slot, is our page to display
 	 */
 	public function __destruct() {
-		/** @var $lastPres \BlitzMvp\Core\Presenter\Presenter */
+		/** @var $lastPres \MvpS\Core\Presenter\Presenter */
 		//		dieToString($this->renderedViews);
 		$lastPres = array_shift($this->renderedViews);
 		print $lastPres->renderView();

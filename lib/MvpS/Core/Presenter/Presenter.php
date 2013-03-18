@@ -1,21 +1,22 @@
 <?php
 
-namespace BlitzMvp\Core\Presenter;
+namespace MvpS\Core\Presenter;
 
 class Presenter {
+	const DefaultBaseTemplate = 'base';
+
 	public $path = '';
 	public $output = '';
 	protected $route = '';
 	protected $dir = '';
 	protected $template = '';
-	protected $baseTemplate = 'base';
+	protected $baseTemplate = '';
 
 	public function __construct($route = '', $dir = '', $template = '', $baseTemplate = '') {
 		$this->route    = $route;
 		$this->dir      = $dir;
 		$this->template = $template;
-		if($baseTemplate)
-			$this->baseTemplate = $baseTemplate;
+		$this->baseTemplate = $baseTemplate ? $baseTemplate : self::DefaultBaseTemplate;
 	}
 
 	/**
@@ -44,7 +45,7 @@ class Presenter {
 	public function  renderView() {
 		$data = array('output' => $this->output);
 		if($this->baseTemplate) {
-			$basePath       = MVSP_VIEWS . "{$this->baseTemplate}.twig";
+			$basePath       = MVPS_VIEWS . "{$this->baseTemplate}.twig";
 			$data['layout'] = Stage::$inst->view->loadTemplate($basePath);
 		}
 

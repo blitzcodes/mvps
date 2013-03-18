@@ -1,6 +1,6 @@
 <?php
 
-namespace BlitzMvp\Core\Accounts\lib;
+namespace MvpS\Core\Accounts\lib;
 
 trait Authentication {
 	private $_isAuthenticated = false;

@@ -1,7 +1,7 @@
 <?php
 
-namespace BlitzMvp\Core\Model;
+namespace MvpS\Core\Model;
 
 class Model {
-	use \BlitzMvp\Core\Data\RESTful, \BlitzMvp\Core\View\Renderable;
+	use \MvpS\Core\Data\RESTful, \MvpS\Core\View\Renderable;
 }

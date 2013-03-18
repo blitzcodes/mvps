@@ -1,9 +1,9 @@
 <?php
 
-namespace BlitzMvp\Core\Data;
+namespace MvpS\Core\Data;
 
 trait RESTful {
-	use \BlitzMvp\Core\Data\lib\Crudable;
+	use \MvpS\Core\Data\lib\Crudable;
 
 	public function  get() { }
 

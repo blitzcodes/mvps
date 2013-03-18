@@ -1,6 +1,6 @@
 <?php
 
-namespace BlitzMvp\Core\Data\lib;
+namespace MvpS\Core\Data\lib;
 
 trait Crudable {
 	public function create() { }

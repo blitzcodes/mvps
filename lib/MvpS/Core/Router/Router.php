@@ -1,11 +1,11 @@
 <?php
 
-namespace BlitzMvp\Core\Router;
+namespace MvpS\Core\Router;
 
 class Router {
-	use \BlitzMvp\Core\View\Renderable;
+	use \MvpS\Core\View\Renderable;
 
-	const DefaultTemplate = 'Main/default';
+	const DefaultTemplate = 'main/main';
 	const DefaultRoute    = 'home';
 	public $queryRoute = array();
 	public $fullRoute = '';
@@ -77,7 +77,7 @@ class Router {
 	 *
 	 * @return string
 	 */
-	private function _cleanPath($path, $root = MVSP_PRESENTERS) {
+	private function _cleanPath($path, $root = MVPS_PRESENTERS) {
 		return str_replace(array(
 			'//',
 			'/.'
@@ -100,10 +100,10 @@ class Router {
 	 * @return string
 	 */
 	public function getViewRoute($template = '') {
-		$templatePath = MVSP_VIEWS . "$template.twig";
-		if(!is_file(MVSP_ROOT . $templatePath))
-			$templatePath = MVSP_VIEWS . self::DefaultTemplate . ".twig";
-		if(!is_file(MVSP_ROOT . $templatePath)) {
+		$templatePath = MVPS_VIEWS . "$template.twig";
+		if(!is_file(MVPS_ROOT . $templatePath))
+			$templatePath = MVPS_VIEWS . self::DefaultTemplate . ".twig";
+		if(!is_file(MVPS_ROOT . $templatePath)) {
 			var_dump($templatePath);
 			die("Default template missing!");
 		}

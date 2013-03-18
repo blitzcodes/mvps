@@ -1,6 +1,6 @@
 <?php
 
-namespace BlitzMvp\Core\View;
+namespace MvpS\Core\View;
 
 trait Renderable {
 	public function toString() {
