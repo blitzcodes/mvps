@@ -1,0 +1,17 @@
+{
+	"name"              : "massid/mvpstage",
+	"description"       : "This is my desc",
+	"minimum-stability" : "stable",
+	"authors"           :
+		[
+			{
+				"name"  : "Sean 'Blitz' Homer",
+				"email" : "seanjhomer@gmail.com"
+			}
+		],
+    "require": {
+        "twig/twig": "1.6.5",
+        "twig/extensions": "v1.0.0",
+        "Jam/Cache": "1.0.0"
+    }
+}
