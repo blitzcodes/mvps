@@ -3,9 +3,7 @@
 namespace MvpS\Core\Presenter;
 
 class Stage {
-	/** @var \MvpS\Core\Presenter\Stage|null */
-	public static $inst = null;
-	/** @var $router \MvpS\Core\Router\Router|null */
+	/** @var $router \MvpS\Core\Presenter\Router|null */
 	public $router = null;
 	/** @var $uri \MvpS\Core\Presenter\Stage|null */
 	public $presenter = null;
@@ -13,20 +11,16 @@ class Stage {
 	public $renderedViews = array();
 	/** @var $view \Twig_Environment|null */
 	public $view = null;
-	/** @var $view \Assetic\Factory\AssetFactory|null */
-	public $assets = null;
+	private $id = 0;
 
 	/**
 	 * @param \Twig_Environment $viewer
 	 */
-	public function __construct(\Twig_Environment $viewer, \Assetic\Factory\AssetFactory $assets = null) {
-		self::$inst =& $this;
-
+	public function __construct(\Twig_Environment $viewer) {
 		// Register the autoload controls, stackable and does not interfere with Twig's
 		$this->_registerAutoload();
-		$this->router = new \MvpS\Core\Router\Router();
 
-		$this->assets = $assets;
+		$this->router = new Router();
 
 		$this->view = $viewer;
 		$this->renderPresenter();
@@ -45,9 +39,9 @@ class Stage {
 				$namedClass = ltrim($namedClass, '\\');
 				$classPath  = '';
 				if($lastNsPos = strrpos($namedClass, '\\')) {
-					$namespace  = LIB_ROOT . substr($namedClass, 0, $lastNsPos);
+					$namespace = LIB_ROOT . substr($namedClass, 0, $lastNsPos);
 					$namedClass = substr($namedClass, $lastNsPos + 1);
-					$classPath  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
+					$classPath = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
 				}
 				$classPath .= str_replace('_', DIRECTORY_SEPARATOR, $namedClass) . '.php';
 
@@ -71,10 +65,16 @@ class Stage {
 	 * @return mixed
 	 */
 	public function renderPresenter($route = '', $dir = '', $template = '', $baseTemplate = '') {
-		$presenter             = new Presenter($route, $dir, $template, $baseTemplate);
-		$this->renderedViews[] =& $presenter;
+		$presenter = new Presenter($this, $route, $dir, $template, $baseTemplate);
+		$presenter->render();
+		list($css, $js) = $presenter->assets->render();
+		$this->css .= $css;
+		$this->js .= $js;
+		var_dump($this->css, $this->js);
 
-		return $presenter->render();
+		$this->renderedViews[] = $presenter;
+
+		return $presenter->output;
 	}
 
 	/**
@@ -86,7 +86,12 @@ class Stage {
 		//		dieToString($this->renderedViews);
 		$lastPres = array_shift($this->renderedViews);
 
-		$data        = array();
+		$data = array(
+			'assets' => array(
+				'css' => $this->css,
+				'js'  => $this->js
+			)
+		);
 		print $lastPres->renderView($data);
 	}
 }

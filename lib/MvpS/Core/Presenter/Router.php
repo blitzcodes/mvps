@@ -1,12 +1,14 @@
 <?php
 
-namespace MvpS\Core\Router;
+namespace MvpS\Core\Presenter;
 
 class Router {
 	use \MvpS\Core\View\Renderable;
 
+	const DefaultBaseTemplate = 'base/base';
 	const DefaultTemplate = 'main/main';
 	const DefaultRoute    = 'home';
+
 	public $queryRoute = array();
 	public $fullRoute = '';
 	public $currentRoute = '';
@@ -68,6 +70,7 @@ class Router {
 		if(!is_file($presenterPath))
 			die("Default presenter missing!");
 
+//		return array(str_replace('/\\\\',DIRECTORY_SEPARATOR, $presenterPath), str_replace('\\\\','',$dir));
 		return $presenterPath;
 	}
 
