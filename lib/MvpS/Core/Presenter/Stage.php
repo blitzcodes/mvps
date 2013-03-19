@@ -19,7 +19,7 @@ class Stage {
 	/**
 	 * @param \Twig_Environment $viewer
 	 */
-	public function __construct(\Twig_Environment $viewer, \Assetic\Factory\AssetFactory $assets) {
+	public function __construct(\Twig_Environment $viewer, \Assetic\Factory\AssetFactory $assets = null) {
 		self::$inst =& $this;
 
 		// Register the autoload controls, stackable and does not interfere with Twig's
@@ -87,18 +87,6 @@ class Stage {
 		$lastPres = array_shift($this->renderedViews);
 
 		$data        = array();
-		/*$data['css'] = $this->assets->createAsset(array(
-			//			'@reset',         // load the asset manager's "reset" asset
-			'css/*.css',
-			// load every scss files from "/path/to/asset/directory/css/src/"
-		), array(
-			'CSSMin',
-			'css_rewriter',
-			//			'css',           // filter through the filter manager's "scss" filter
-//			'gcss',
-			// don't use this filter in debug mode
-		))->dump();*/
-
 		print $lastPres->renderView($data);
 	}
 }

@@ -11,7 +11,6 @@
 		],
     "require": {
         "twig/twig": "1.6.5",
-        "twig/extensions": "v1.0.0",
-        "Jam/Cache": "1.0.0"
+        "twig/extensions": "v1.0.0"
     }
 }

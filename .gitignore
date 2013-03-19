@@ -18,6 +18,8 @@ local.properties
 .idea/
 .c9revisions/
 vendor/
+*.phar
+*.lock
 
 # External tool builders
 .externalToolBuilders/
