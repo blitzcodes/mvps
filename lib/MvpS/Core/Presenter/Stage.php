@@ -7,22 +7,26 @@ class Stage {
 	public static $inst = null;
 	/** @var $router \MvpS\Core\Router\Router|null */
 	public $router = null;
-	/** @var $view \Twig_Environment|null */
-	public $view = null;
 	/** @var $uri \MvpS\Core\Presenter\Stage|null */
 	public $presenter = null;
 	/** @var array */
 	public $renderedViews = array();
+	/** @var $view \Twig_Environment|null */
+	public $view = null;
+	/** @var $view \Assetic\Factory\AssetFactory|null */
+	public $assets = null;
 
 	/**
 	 * @param \Twig_Environment $viewer
 	 */
-	public function __construct(\Twig_Environment $viewer) {
+	public function __construct(\Twig_Environment $viewer, \Assetic\Factory\AssetFactory $assets) {
 		self::$inst =& $this;
 
 		// Register the autoload controls, stackable and does not interfere with Twig's
 		$this->_registerAutoload();
 		$this->router = new \MvpS\Core\Router\Router();
+
+		$this->assets = $assets;
 
 		$this->view = $viewer;
 		$this->renderPresenter();
@@ -81,6 +85,20 @@ class Stage {
 		/** @var $lastPres \MvpS\Core\Presenter\Presenter */
 		//		dieToString($this->renderedViews);
 		$lastPres = array_shift($this->renderedViews);
-		print $lastPres->renderView();
+
+		$data        = array();
+		/*$data['css'] = $this->assets->createAsset(array(
+			//			'@reset',         // load the asset manager's "reset" asset
+			'css/*.css',
+			// load every scss files from "/path/to/asset/directory/css/src/"
+		), array(
+			'CSSMin',
+			'css_rewriter',
+			//			'css',           // filter through the filter manager's "scss" filter
+//			'gcss',
+			// don't use this filter in debug mode
+		))->dump();*/
+
+		print $lastPres->renderView($data);
 	}
 }

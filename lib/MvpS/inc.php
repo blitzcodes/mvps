@@ -1,5 +1,8 @@
 <?php
 
+
+define("ASSET_ROOT", SITE_ROOT . 'assets/');
+
 define("MVPS_CORE", MVPS_ROOT . 'Core/');
 define("MVPS_HELPERS", MVPS_CORE . 'Helpers/');
 define("MVPS_PRESENTERS", MVPS_ROOT . 'Presenters/');

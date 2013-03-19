@@ -4,7 +4,6 @@ namespace MvpS\Core\Presenter;
 
 class Presenter {
 	const DefaultBaseTemplate = 'base';
-
 	public $path = '';
 	public $output = '';
 	protected $route = '';
@@ -13,9 +12,9 @@ class Presenter {
 	protected $baseTemplate = '';
 
 	public function __construct($route = '', $dir = '', $template = '', $baseTemplate = '') {
-		$this->route    = $route;
-		$this->dir      = $dir;
-		$this->template = $template;
+		$this->route        = $route;
+		$this->dir          = $dir;
+		$this->template     = $template;
 		$this->baseTemplate = $baseTemplate ? $baseTemplate : self::DefaultBaseTemplate;
 	}
 
@@ -42,8 +41,9 @@ class Presenter {
 	/**
 	 * @return string
 	 */
-	public function  renderView() {
-		$data = array('output' => $this->output);
+	public function  renderView($data = array()) {
+		$data = array_merge($data, array('output' => $this->output));
+
 		if($this->baseTemplate) {
 			$basePath       = MVPS_VIEWS . "{$this->baseTemplate}.twig";
 			$data['layout'] = Stage::$inst->view->loadTemplate($basePath);
