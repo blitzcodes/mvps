@@ -9,7 +9,7 @@ class Presenter {
 	protected $stage = null;
 	protected $route = '';
 	protected $dir = '';
-	protected $template = '';
+	public $template = '';
 	protected $baseTemplate = '';
 	/** @var $view \Assetic\Factory\AssetFactory|null */
 	public $assets = null;
@@ -32,7 +32,7 @@ class Presenter {
 
 		$this->assets->addPresenterPath($this->path);
 
-		require_once($this->path);
+		include($this->path);
 		$output .= "<hr/>Current Route: " . $this->stage->router->toString();
 
 		$this->output = $output;
