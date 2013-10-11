@@ -10,7 +10,9 @@ trait Errorable {
 	public function throws($exception) {
 		if(is_string($exception))
 			throw new \Exception($exception);
-		else if(get_class($exception) == 'Exception')
+		else if(is_subclass_of($exception, 'Exception'))
 			throw $exception;
+		else
+			throw new \Exception("An invalid use of the throws exception method has been used, please resolve.");
 	}
 }
