@@ -2,12 +2,29 @@
 
 namespace MvpS\Core\Data\lib;
 
-trait Crudable {
-	public function create() { }
+trait CRUDable {
+	public function create($params = null) {
+		$query = $params;
+		return $this->query($query);
+	}
 
-	public function read() { }
+	public function read($params = null) {
+		$query = $params;
+		return $this->query($query);
+	}
 
-	public function update() { }
+	public function update($params = null) {
+		$query = $params;
+		return $this->query($query);
+	}
 
-	public function delete() { }
+	public function delete($params = null) {
+		$query = $params;
+		return $this->query($query);
+	}
+
+	protected function query($sql) {
+		$result = false;
+		return $result;
+	}
 }

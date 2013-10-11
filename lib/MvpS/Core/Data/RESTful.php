@@ -5,11 +5,33 @@ namespace MvpS\Core\Data;
 trait RESTful {
 	use \MvpS\Core\Data\lib\Crudable;
 
-	public function  get() { }
+	// Read
+	public function  get($params = null) {
+		$query = $this->read($params);
+		return $query;
+	}
 
-	public function  post() { }
+	// Create
+	public function  post($params = null) {
+		$query = $this->create($params);
+		return $query;
+	}
 
-	public function  json() { }
+	// Update
+	public function  put($params = null) {
+		$query = $this->update($params);
+		return $query;
+	}
 
-	public function  html() { }
+	// Delete
+//	public function  delete($params = null) {
+//		$query = $this->delete($params);
+//		return $query;
+//	}
+
+	// Json output
+	public function  toJson() { }
+
+	// Html output
+	public function  toHtml() { }
 }
